@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import {Router, Stack, Scene} from 'react-native-router-flux';
 
 import Login from './views/Login';
 import Signup from './views/Signup';
 
 
-const styles = {
+interface barButtonIconStyle {
+    tintColor: 'white'
+}
+
+const styles = StyleSheet.create({
     barButtonIconStyle: {
         tintColor: 'white'
     }
-}
+})
 
-export default class Routes extends Component {
+export default class Routes extends Component<{}> {
     render() {
         return (
-            <Router barButtonIconStyle ={styles.barButtonIconStyle}
-                hideNavBar={false} 
-                navigationBarStyle={{backgroundColor: '#1565c0',}} 
-                titleStyle={{color: 'white',}}
-            >
+            <Router>
                 <Stack key="root">
                 <Scene key="login" component={Login} title="Login"/>
                 <Scene key="signup" component={Signup} title="Sign up"/>
