@@ -6,9 +6,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { Actions } from 'react-native-router-flux';
-
 import Form from '../components/Form.tsx';
+
+export interface Props {
+  navigation: any
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -35,9 +37,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Signup extends Component {
+export default class Signup extends Component<Props> {
   goBack = () => {
-    Actions.pop();
+    const { navigation }: Props = this.props;
+    navigation.goBack();
   }
 
   render() {

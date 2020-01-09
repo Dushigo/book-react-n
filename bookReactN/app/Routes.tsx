@@ -1,21 +1,17 @@
-import React from 'react';
-import { Router, Stack, Scene } from 'react-native-router-flux';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import Login from './views/Login.tsx';
 import Signup from './views/Signup.tsx';
 
 
-interface barButtonIconStyle {
-    tintColor: 'white'
-}
+const AppNavigator = createStackNavigator({
+  Login: {
+    screen: Login,
+  },
+  Signup: {
+    screen: Signup,
+  },
+});
 
-export default function Routes() {
-  return (
-    <Router>
-      <Stack key="root">
-        <Scene key="login" component={Login} title="Login" />
-        <Scene key="signup" component={Signup} title="Sign up" />
-      </Stack>
-    </Router>
-  );
-}
+export default createAppContainer(AppNavigator);
