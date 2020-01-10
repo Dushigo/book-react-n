@@ -16,3 +16,5 @@ web-report/
 #VS Code
 .vscode/
 
+#Firebase config
+config/firebaseConfig.ts

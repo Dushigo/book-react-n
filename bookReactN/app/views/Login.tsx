@@ -10,7 +10,7 @@ import Form from '../components/Form.tsx';
 import * as Storage from '../services/StorageService';
 
 export interface Props {
-    navigation: any
+    navigation: any,
 }
 
 const styles = StyleSheet.create({
