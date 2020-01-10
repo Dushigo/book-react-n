@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import Form from '../components/Form.tsx';
+import * as Storage from '../services/StorageService';
 
 export interface Props {
     navigation: any
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
 });
 
 export default class Login extends Component<Props> {
-  signup = () => {
+  signup = async () => {
     const { navigation }: Props = this.props;
     navigation.navigate('Signup');
   }

@@ -103,7 +103,6 @@ export default class Form extends Component<Props, State> {
             onChangeText={(email) => this.setState({ email })}
             underlineColorAndroid="rgba(0,0,0,0)"
             placeholder="Email"
-            placeholderTextColor="#002f6c"
             selectionColor="#fff"
             keyboardType="email-address"
           />
@@ -113,7 +112,6 @@ export default class Form extends Component<Props, State> {
             underlineColorAndroid="rgba(0,0,0,0)"
             placeholder="Password"
             secureTextEntry
-            placeholderTextColor="#002f6c"
           />
 
           <TouchableOpacity style={styles.button}>
