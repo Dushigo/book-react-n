@@ -5,10 +5,10 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  AsyncStorage,
-  Keyboard,
 } from 'react-native';
 
+import * as firebase from 'firebase/app';
+import firebaseApp from '../../services/AuthService.tsx';
 
 export interface Props {
     type: string
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default class Form extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -58,40 +57,27 @@ export default class Form extends Component<Props, State> {
     };
   }
 
+  hangleLogin = () => {
+    const { email, password } = this.state;
+    firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+      console.log('UserNotFound', error);
+    });
+  };
+
+  handleSignUp = () => {
+    const { email, password } = this.state;
+    firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => console.log('User regitered'));
+  };
+
+
     saveData = async () => {
-      const { email, password } = this.state;
       const { type }: Props = this.props;
-      const loginDetails : State = {
-        email,
-        password,
-      };
 
       if (type !== 'Login') {
-        AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
-
-        Keyboard.dismiss();
-        console.log(`You successfully registered. Email: ${email} password: ${password}`);
+        this.handleSignUp();
       } else if (type === 'Login') {
-        try {
-          const ld = JSON.parse(await AsyncStorage.getItem('loginDetails'));
-
-          if (ld.email != null && ld.password != null) {
-            if (ld.email === email && ld.password === password) {
-              console.log('Go in!');
-            } else {
-              console.log('Email and Password does not exist!');
-            }
-          }
-        } catch (error) {
-          console.log(error);
-        }
+        this.hangleLogin();
       }
-    }
-
-    showData = async () => {
-      const loginDetails = await AsyncStorage.getItem('loginDetails');
-      const ld = JSON.parse(loginDetails);
-      console.log(`email: ${ld.email}  password: ${ld.password}`);
     }
 
     render() {

@@ -9,7 +9,7 @@ import {
 import Form from '../components/Form.tsx';
 
 export interface Props {
-    navigation: any
+    navigation: any,
 }
 
 const styles = StyleSheet.create({
