@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 import Form from '../components/Form.tsx';
-import * as Storage from '../services/StorageService';
 
 export interface Props {
     navigation: any,
